@@ -3,7 +3,7 @@ class Api::V1::MoviesController < ApplicationController
 
   def index
     if params[:query].present?
-      movies = Movie.search_by_term(params[:query])
+      movies = Movie.where("release = ?", params[:query])
     else
       movies = Movie.all
     end

@@ -4,6 +4,11 @@ class Api::V1::MoviesController < ApplicationController
   def index
     if params[:query].present?
       movies = Movie.where("release = ? OR title = ? OR overview = ? OR vote = ?", params[:query], params[:query], params[:query], params[:query])
+    elsif params[:start].present?
+      start_date = params[:start]
+      end_date = params[:end]
+      range = (start_date..end_date)
+      movies = Movie.where("release = ?", range)
     else
       movies = Movie.all
     end
@@ -28,16 +33,6 @@ class Api::V1::MoviesController < ApplicationController
       else
         render json: propiedades, status: 201
       end
-    end
-
-    def searchByDate
-     start_date = params[:start]
-     end_date = params[:end]
-     range = (start_date..end_date)
-
-     movies = Movies.where(release: range)
-
-     render json: movies, status: 201
     end
 
     def create

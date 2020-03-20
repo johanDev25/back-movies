@@ -1,0 +1,21 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+
+development:
+  <<: *default
+  database: guestbook_development
+  username: postgresql
+  password: root1925
+
+test:
+  <<: *default
+  database: guestbook_test
+  username: postgresql
+  password: root1925
+
+production:
+  <<: *default
+  database: guestbook_production
+  username: deploy

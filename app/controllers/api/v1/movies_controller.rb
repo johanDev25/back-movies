@@ -35,7 +35,7 @@ class Api::V1::MoviesController < ApplicationController
      end_date = params[:end]
      range = (start_date..end_date)
 
-     movies = Movies.all.where(range)
+     movies = Movies.where(release: range)
 
      render json: movies, status: 201
     end

@@ -13,7 +13,7 @@ class Api::V1::MoviesController < ApplicationController
   def search
     name = params[:name]
     error = 'No hay resultados'
-    request = HTTParty.get("https://api.themoviedb.org/3/search/movie?api_key=#{ENV["wrapperapi_key"]}&query=#{name}")
+    request = HTTParty.get("https://api.themoviedb.org/3/search/movie?api_key=a85085d5944badafb9e37c79d101e3e7&query=#{name}")
     result = JSON.parse request.to_s
     propiedades = {
       :id => result['results'][0]['id'],

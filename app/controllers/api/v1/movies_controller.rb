@@ -7,7 +7,7 @@ class Api::V1::MoviesController < ApplicationController
     else
       movies = Movie.all
     end
-     render json: movies
+     render json: movies, status: 201
   end
 
   def search
@@ -28,6 +28,16 @@ class Api::V1::MoviesController < ApplicationController
       else
         render json: propiedades, status: 201
       end
+    end
+
+    def searchByDate
+     start_date = params[:start]
+     end_date = params[:end]
+     range = (start_date..end_date)
+
+     movies = Movies.all.where(range)
+
+     render json: movies, status: 201
     end
 
     def create

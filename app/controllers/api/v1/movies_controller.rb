@@ -8,7 +8,7 @@ class Api::V1::MoviesController < ApplicationController
       start_date = params[:start]
       end_date = params[:end]
       range = (start_date..end_date)
-      movies = Movie.where("release = ?", range)
+      movies = Movie.where(release: range)
     else
       movies = Movie.all
     end
